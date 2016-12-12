@@ -1,9 +1,12 @@
-let args = process.argv;
-let total = 0;
-for (var i = 2; i < args.length; i++) {
-    total = total + Number(args[i]);
-}
+var fs = require('fs');
 
-console.log(total);
+let filePath = process.argv[2];
 
+let fileBuffer = fs.readFileSync(filePath);
+//console.log(fileBuffer);
+var fileString = fileBuffer.toString();
+//console.log(fileString);
+
+var newLineStrings = fileString.split('\n');
+console.log(newLineStrings.length - 1);
 
