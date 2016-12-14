@@ -1,22 +1,31 @@
+//console.log(process.argv);
 
-
-function readFile(filePath) {
+function readDirectory(directoryPath, fileExtension) {
     var fs = require('fs');
+    var path = require('path');
 
-    fs.readFile(filePath, function doneReading(err, fileBuffer) {
+    fs.readdir(directoryPath, function doneReading(err, fileBuffer) {
 
         if (err != null) {
             throw err;
         }
-        //console.log(fileBuffer);
+        // console.log(fileBuffer);
         let fileString = fileBuffer.toString();
         //console.log(fileString);
 
-        let lineCount = fileString.split('\n').length - 1;
-        console.log(lineCount);
-    })
+        let filenames = fileString.split(',');
+        for (var i = 0; i < filenames.length; i++) {
+            var fileName = filenames[i];
+            //console.log(fileName + " " + path.extname(fileName));
+            if (path.extname(fileName) === "." + fileExtension) {
+                console.log(fileName);
+            }
+        }
+    });
 }
 
+var directoryPath = process.argv[2];
+var fileExtension = process.argv[3];
 
-readFile(process.argv[2]);
+readDirectory(directoryPath, fileExtension);
 
