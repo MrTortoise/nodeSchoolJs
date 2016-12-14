@@ -2,11 +2,21 @@ var fs = require('fs');
 
 let filePath = process.argv[2];
 
-let fileBuffer = fs.readFileSync(filePath);
-//console.log(fileBuffer);
-var fileString = fileBuffer.toString();
-//console.log(fileString);
+function addOne() {
+    fs.readFile(filePath, function doneReading(err, fileBuffer) {
 
-var newLineStrings = fileString.split('\n');
-console.log(newLineStrings.length - 1);
+        if (err != null) {
+            throw err;
+        }
+        //console.log(fileBuffer);
+        let fileString = fileBuffer.toString();
+        //console.log(fileString);
+
+        let newLineStrings = fileString.split('\n');
+        console.log(newLineStrings.length - 1);
+    })
+}
+
+
+
 
