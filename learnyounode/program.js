@@ -1,12 +1,22 @@
-var fs = require('fs');
 
-let filePath = process.argv[2];
 
-let fileBuffer = fs.readFileSync(filePath);
-//console.log(fileBuffer);
-var fileString = fileBuffer.toString();
-//console.log(fileString);
+function readFile(filePath) {
+    var fs = require('fs');
 
-var newLineStrings = fileString.split('\n');
-console.log(newLineStrings.length - 1);
+    fs.readFile(filePath, function doneReading(err, fileBuffer) {
+
+        if (err != null) {
+            throw err;
+        }
+        //console.log(fileBuffer);
+        let fileString = fileBuffer.toString();
+        //console.log(fileString);
+
+        let lineCount = fileString.split('\n').length - 1;
+        console.log(lineCount);
+    })
+}
+
+
+readFile(process.argv[2]);
 
