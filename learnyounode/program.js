@@ -1,8 +1,8 @@
-var fs = require('fs');
 
-let filePath = process.argv[2];
 
-function addOne() {
+function readFile(filePath) {
+    var fs = require('fs');
+
     fs.readFile(filePath, function doneReading(err, fileBuffer) {
 
         if (err != null) {
@@ -12,11 +12,11 @@ function addOne() {
         let fileString = fileBuffer.toString();
         //console.log(fileString);
 
-        let newLineStrings = fileString.split('\n');
-        console.log(newLineStrings.length - 1);
+        let lineCount = fileString.split('\n').length - 1;
+        console.log(lineCount);
     })
 }
 
 
-
+readFile(process.argv[2]);
 
