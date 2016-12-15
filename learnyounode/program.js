@@ -1,17 +1,13 @@
 
 
-let directoryPath = process.argv[2];
-let fileExtension = process.argv[3];
+let url = process.argv[2];
 
-var mod = require('./fsModule');
 
-mod(directoryPath, fileExtension, function callBack(err, data) {
-    if (err != null) {
-        console.log(err);
-    }
+var http = require('http')
 
-    for (var i = 0; i < data.length; i++) {
-        console.log(data[i]);
-    }
-});
+http.get(url, function urlCallback(response) {
+    response.setEncoding("utf8");
+    response.on("data", console.log);
+    response.on("error", console.error)
+}).on('error', console.error);
 
