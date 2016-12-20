@@ -7,5 +7,5 @@ test.createStream()
 
 test('simple passing equality test', function (t) {
     t.plan(1);
-    t.equal(12, 5 + 6);
+    t.equal(12, 6 + 6);
 });
